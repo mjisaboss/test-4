@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href= "">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive menu and overlay example code</title>
+    <style>
+        body {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        #overlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            cursor: pointer;
+        }
+
+
+        #header {
+            height: 100px;
+        }
+
+        #logo {
+            float: left;
+            width: 30%;
+            display: block;
+            margin: 5px 20px;
+            color: #fff;
+        }
+
+        .menu {
+            float: right;
+            display: block;
+            margin: 5px 20px;
+
+        }
+
+        .menuItem {
+            padding: 5px;
+            margin: 0px 5px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .menuItem:hover,
+        .active {
+            background: #006eff;
+            color: rgba(0, 0, 0, 0.8);
+
+        }
+
+
+
+        #mainContent,
+        #mainContent2,
+        #mainContent3 {
+
+            width: 100%;
+            color: #fff;
+            max-width: 50%;
+            margin: 0 auto;
+        }
+
+        #mainContent2,
+        #mainContent3 {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div>
+            <div id="logo">Mark/MJ Beatty</div>
+        </div>
+        <div>
+            <nav class="menu">
+                <a href="#home" class="menuItem active" onclick="home()">Home</a>
+                <a href="#about" class="menuItem" onclick="about()">About</a>
+                <a href="#works" class="menuItem" onclick="works()">Works</a>
+            </nav>
+        </div>
+    </div>
+    <div id="main">
+        <div id="mainContent">
+            <p>This is my first webite. Click about me to learn mroe about who I am. .</p>
+
+            <!--Overlay example -->
+            <div id="overlay"></div>
+            <button id="myButton">Click here</button>
+            <button onclick="myFunction()"> This is a button</button>
+            <!--Overlay example end -->
+        </div>
+        <div id="mainContent2">
+            <p>My name is Mark Beatty some people know me as MJ. I go to Ohio University. Im a junior studying Game Design and Animation.
+                I love going to gaming conventions like Pax East and E3! I write articles about gaming. Click this link to see my articles about gaming published on Lords of gaming: <a href="https://lordsofgaming.net/author/beatt10/">This is a link</a>
+            </p>
+            <p><p> <img src="https://www.ohio.edu/themes/custom/OHIOsubTheme/ohio-logo.svg"> 
+            
+            <img src="www.bing.com" width="600" height="400" alt="Alternate text"></p>
+
+        </div>
+        <div id="mainContent3">
+            <p>I work at Gamestop. I cater weddings.<p>
+            <p><img src="https://th.bing.com/th/id/OIP.WOlbud4JJjzSbNVT-2q3wAHaE7?pid=ImgDet&rs=1"></p>   
+            <img src="www.bing.com" width="600" height="400" alt="Alternate text"></p> 
+            <img src="https://consumerist.com/consumermediallc.files.wordpress.com/2012/06/gamestop8.jpg%3Fw=1060"></p>
+        </div>
+    </div>
+    
+</body>
+<script>
+    // Declaring global variables accessible from anywhere inside of the code
+    var myHome = document.getElementById("mainContent");
+    var myAbout = document.getElementById("mainContent2");
+    var myWorks = document.getElementById("mainContent3");
+    var myButtons = document.getElementsByClassName("menuItem")
+
+    // On clicking on "Home" button, do this function
+    function home() {
+        myHome.setAttribute("style", "display:block;");
+        myAbout.setAttribute("style", "display:none;");
+        myWorks.setAttribute("style", "display:none;");
+        myButtons[0].classList.add('active');
+        myButtons[1].classList.remove('active');
+        myButtons[2].classList.remove('active');
+
+
+    }
+
+    // On clicking on "About" button, do this function
+    function about() {
+        // Set style attribute
+        myHome.setAttribute("style", "display:none;");
+        myAbout.setAttribute("style", "display:block;");
+        myWorks.setAttribute("style", "display:none;");
+        // Add or remove element class "active". 
+        // It is already defined inside of "style".  
+        myButtons[0].classList.remove('active');
+        myButtons[1].classList.add('active');
+        myButtons[2].classList.remove('active');
+
+    }
+
+    // On clicking on "Works" button, do this function
+    function works() {
+        myHome.setAttribute("style", "display:none;");
+        myAbout.setAttribute("style", "display:none;");
+        myWorks.setAttribute("style", "display:block;");
+        myButtons[0].classList.remove('active');
+        myButtons[1].classList.remove('active');
+        myButtons[2].classList.add('active');
+    }
+
+
+    // Overlay functions. 
+    document.getElementById("myButton").addEventListener("click", function () {
+        document.getElementById("overlay").style.display = "block";
+    });
+    document.getElementById("overlay").addEventListener("click", function () {
+        document.getElementById("overlay").style.display = "none";
+    })
+
+
+</script>
+
+</html>
